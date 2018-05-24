@@ -24,7 +24,25 @@ void Inputs::update() {
   button2.update();
   button3.update();
   button4.update();
+
+  // check which buttons are pressed and notify the observers
+  if (button1.fallingEdge()) {
+    notify(Event::BUT1_PRESSED);
+  }
+  if (button2.fallingEdge()) {
+    notify(Event::BUT2_PRESSED);
+  }
+  if (button3.fallingEdge()) {
+    notify(Event::BUT3_PRESSED);
+  }
+  if (button4.fallingEdge()) {
+    notify(Event::BUT4_PRESSED);
+  }
+
+
 }
+
+
 
 bool Inputs::isPressed(int pButton) {
   bool pressed = false;

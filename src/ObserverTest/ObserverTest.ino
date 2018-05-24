@@ -1,10 +1,13 @@
 #include <Arduino.h>
 #include "Inputs.h"
 #include "LEDButtons.h"
-// MileStone 1 - A Light up keyboard with sounds and lights per key
+/* Hardware Notes
+Teensy 3.2 
+8LED NEOPIXEL strip on pin 14
+internal pull_up buttons on pins 5,6,7,8
+*/
 
 // inputs
-// Inputs needs a generic interface, or it can store the input model inside it
 Inputs inputs = Inputs();
 
 // audio
@@ -22,7 +25,6 @@ unsigned int timeStep = 1000;
 LEDButtons ledButtons = LEDButtons(leds, &inputs);
 
 
-// using a simplified MVC pattern
 
 void setup() {
   FastLED.addLeds<NEOPIXEL, LED_PIN>(leds, NUM_LEDS);
@@ -32,6 +34,7 @@ void setup() {
   leds[3] = CRGB(0,0,0);
 
   inputs.begin();
+  inputs.addObserver(&ledButtons);
   Serial.begin(9600);
 
 }
@@ -42,7 +45,7 @@ void loop() {
   inputs.update();
   ledButtons.update();
   // audioButtons.update();
-  inputs.debugText();
+  // inputs.debugText();
   // debuging
   // if(millis() - timer > timeStep) {
   //   Serial.println("<3 heartBeat <3");

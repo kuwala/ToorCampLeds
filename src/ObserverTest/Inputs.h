@@ -14,6 +14,10 @@
 #include <Encoder.h>
 #include <Bounce.h>
 
+#include "Subject.h"
+#include "Helpers.h"
+
+
 // refactor into interface_manager class
 
 #define BUT1 5
@@ -30,7 +34,7 @@
 #define ENCODER2A 3
 #define ENCODER2B 4
 
-class Inputs {
+class Inputs : public Subject {
    private:
     Encoder knobRight;
     long positionRight;
