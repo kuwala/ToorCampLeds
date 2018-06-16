@@ -1,11 +1,11 @@
 #include <Arduino.h>
-#include <Keyboard.h>
-#include <WS2812Serial.h>
+#include "WS2812Serial.h"
 #define USE_WS2812SERIAL
 #include <FastLED.h>
 #include "Inputs.h"
 #include "LEDButtons.h"
 #include "AudioPlayer.h"
+#include "KeyboardPresser.h"
 
 
 
@@ -63,7 +63,7 @@ const char * filelist[NUM_AUDIO_FILES] = {
 void setupAudio() {
   AudioMemory(8);
   sgtl5000_1.enable();
-  sgtl5000_1.volume(0.5);
+  sgtl5000_1.volume(1);
   SPI.setMOSI(SDCARD_MOSI_PIN);
   SPI.setSCK(SDCARD_SCK_PIN);
   if (!(SD.begin(SDCARD_CS_PIN))) {
@@ -87,7 +87,7 @@ Inputs inputs = Inputs();
 
 // led Parts
 #define NUM_LEDS 8
-#define LED_PIN 1
+#define LED_PIN 5
 #define LED_BRIGHTNESS 64
 CRGB leds[NUM_LEDS];
 unsigned long timer = 0;
@@ -97,6 +97,8 @@ unsigned int timeStep = 1000;
 LEDButtons ledButtons = LEDButtons(leds, &inputs);
 // Audio
 AudioPlayer audioPlayer = AudioPlayer();
+// Keyboard
+KeyboardPresser keyboard = KeyboardPresser();
 
 
 
@@ -112,6 +114,7 @@ void setup() {
   inputs.begin();
   inputs.addObserver(&ledButtons);
   inputs.addObserver(&audioPlayer);
+  inputs.addObserver(&keyboard);
   // audioPlayer.begin();
   Serial.begin(9600);
   setupAudio();

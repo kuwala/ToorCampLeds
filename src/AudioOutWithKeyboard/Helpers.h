@@ -1,0 +1,6 @@
+#ifndef HELPERS_H
+#define HELPERS_H
+
+enum class Event {BUT1_PRESSED, BUT2_PRESSED, BUT3_PRESSED, BUT4_PRESSED};
+
+#endif

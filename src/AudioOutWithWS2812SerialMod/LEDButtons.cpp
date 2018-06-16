@@ -27,6 +27,10 @@ void LEDButtons::update() {
 
 }
 void LEDButtons::onNotify(Event event) {
+  if (event == Event::BUT1_PRESSED) {
+    mLeds[0] = mPressedColor;
+    Serial.println("but1 pressed from ledButtons");
+  }
   if (event == Event::BUT2_PRESSED) {
     mLeds[1] = mPressedColor;
     Serial.println("but2 pressed from ledButtons");
@@ -34,5 +38,9 @@ void LEDButtons::onNotify(Event event) {
   if (event == Event::BUT3_PRESSED) {
     mLeds[2] = mPressedColor;
     Serial.println("but3 pressed from ledButtons");
+  }
+  if (event == Event::BUT4_PRESSED) {
+    mLeds[3] = mPressedColor;
+    Serial.println("but4 pressed from ledButtons");
   }
 }
