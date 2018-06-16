@@ -1,7 +1,6 @@
 #ifndef LEDBUTTONS_H
 #define LEDBUTTONS_H
 #include "FastLED.h"
-#include <Adafruit_NeoPixel.h>
 #include "Inputs.h"
 #include "Observer.h"
 #include "Helpers.h"

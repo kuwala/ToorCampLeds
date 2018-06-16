@@ -8,7 +8,7 @@ LEDButtons::LEDButtons(CRGB* pLeds, Inputs* pInputs) {
 
 }
 void LEDButtons::update() {
-  // this would be great with an observer pattern
+  // this would be great with an observer patternd
   /*
   // normal mode
   int button = 2;
@@ -23,6 +23,7 @@ void LEDButtons::update() {
   //dim led 1
   for (unsigned int i = 0; i < mNumLeds; i++) {
     mLeds[i].fadeToBlackBy(1);
+    mLeds[i].fadeToBlackBy(16);
   }
 
 }
