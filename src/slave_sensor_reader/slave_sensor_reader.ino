@@ -5,7 +5,7 @@
 int delayBetweenSends = 10;  //delay 3 seconds between sends for troubleshooting
 
 void setup()
-{                
+{
   Serial.begin(38400);
   HWSERIAL.begin(38400);
 }
@@ -14,7 +14,7 @@ const int numberOfSensors = 21;
 byte analogPins[] = {A0,A1,A2,A3,A4,A5,A6,A7,A8,A9,A12,A13,A14,A15,A16,A17,A18,A19,A20,A21,A22};
 
 int sensorValue[numberOfSensors];
-int sensorThreshold[numberOfSensors] = {100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100};
+int sensorThreshold[numberOfSensors] = {200,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100};
 
 // Button state: 0 up, 1 down
 int buttonState[numberOfSensors] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
@@ -41,11 +41,6 @@ void loop(){
   {
     if(sensorValue[i] < sensorThreshold[i])
     {
-//      Serial.print("pin ");
-//      Serial.print(i);
-//      Serial.println(" has been hit");
-//      HWSERIAL.print(i);
-//      HWSERIAL.print(',');
 
       // set currentState to down
       buttonState[i] = 1;
@@ -72,7 +67,7 @@ void loop(){
          HWSERIAL.print(i);
          HWSERIAL.print('D');
         // HWSERIAL.print(',');
-        
+
       }
     }
 
@@ -80,8 +75,8 @@ void loop(){
     for (int i = 0; i < numberOfSensors; i++ ) {
       lastButtonState[i] = buttonState[i];
     }
-    
+
   }
   delay(delayBetweenSends);
-  
+
 }

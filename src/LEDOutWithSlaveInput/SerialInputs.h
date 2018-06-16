@@ -9,9 +9,9 @@
 
 class SerialInputs : public Subject {
 private:
-  byte keysOnSerial1[NUM_KEYS];
-  byte keysOnSerial4[NUM_KEYS];
-  byte keysOnSerial5[NUM_KEYS];
+  const byte keysOnSerial1[NUM_KEYS] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
+  const byte keysOnSerial4[NUM_KEYS] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
+  const byte keysOnSerial5[NUM_KEYS] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
 
 public:
   SerialInputs();

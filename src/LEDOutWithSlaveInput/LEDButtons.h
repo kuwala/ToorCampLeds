@@ -8,6 +8,7 @@
 class LEDButtons : public Observer {
 public:
   LEDButtons(CRGB* pLeds, Inputs* pInputs);
+  LEDButtons(CRGB* pLeds);
   void update();
   void onNotify(Event event);
 private:

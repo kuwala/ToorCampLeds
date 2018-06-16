@@ -1,5 +1,11 @@
 #include "LEDButtons.h"
 
+LEDButtons::LEDButtons(CRGB* pLeds) {
+  mLeds = pLeds;
+  mNumLeds = 8;
+  mPressedColor = CRGB(255,0,0);
+
+}
 LEDButtons::LEDButtons(CRGB* pLeds, Inputs* pInputs) {
   mLeds = pLeds;
   mNumLeds = 8;
