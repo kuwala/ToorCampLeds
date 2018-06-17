@@ -17,6 +17,7 @@ public:
   SerialInputs();
   void begin();
   void update();
+  void keyPressed(int key);
 };
 
 #endif

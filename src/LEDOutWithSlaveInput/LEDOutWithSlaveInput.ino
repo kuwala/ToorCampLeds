@@ -1,6 +1,6 @@
 #include <Arduino.h>
-#include <WS2812Serial.h>
-#define USE_WS2812SERIAL
+// #include <WS2812Serial.h>
+// #define USE_WS2812SERIAL
 #include <FastLED.h>
 #include "Inputs.h"
 #include "SerialInputs.h"
@@ -21,7 +21,7 @@ SerialInputs inputs = SerialInputs();
 
 // led Parts
 #define NUM_LEDS 300
-#define LED_PIN 1
+#define LED_PIN 33
 #define LED_BRIGHTNESS 64
 CRGB leds[NUM_LEDS];
 unsigned long timer = 0;
@@ -37,8 +37,8 @@ KeyboardPresser keyboard = KeyboardPresser();
 
 
 void setup() {
-  // FastLED.addLeds<NEOPIXEL, LED_PIN>(leds, NUM_LEDS);
-	FastLED.addLeds<WS2812SERIAL ,LED_PIN,RGB>(leds,NUM_LEDS);
+  FastLED.addLeds<NEOPIXEL, LED_PIN>(leds, NUM_LEDS);
+	// FastLED.addLeds<WS2812SERIAL ,LED_PIN,RGB>(leds,NUM_LEDS);
 	// LEDS.setBrightness(84);
   leds[3] = CRGB(0,128,0);
   FastLED.show();
@@ -46,7 +46,9 @@ void setup() {
   leds[3] = CRGB(0,0,0);
 
   Serial.begin(38400);
+  Serial1.begin(38400);
   Serial4.begin(38400);
+  Serial5.begin(38400);
 
   inputs.begin();
   inputs.addObserver(&ledButtons);

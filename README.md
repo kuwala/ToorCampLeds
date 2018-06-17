@@ -16,7 +16,7 @@ LED:
 Audio:
 - Find appropriate sounds
 - Convert all the sounds to WAV and nameing scheme
-Map sounds to button presses.
+- Map sounds to button presses.
 
 Keyboard:
 - Output a letter pressed for each button pressed.
