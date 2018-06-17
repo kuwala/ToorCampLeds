@@ -11,6 +11,7 @@ void setup()
   HWSERIAL1.begin(38400);
   HWSERIAL4.begin(38400);
   HWSERIAL5.begin(38400);
+  Serial.println("starting teensy");
 }
 
 int numOfKeys = 21;
@@ -38,7 +39,7 @@ void loop(){
     }
     Serial.print(" - ");
     Serial.print("State (D)own or (U)p : ");
-    Serial.print(state); 
+    Serial.println(state); 
     
   }
   while (HWSERIAL4.available() > 0) {
@@ -47,7 +48,7 @@ void loop(){
     Serial.print(keyPressed);
     Serial.print(" - ");
     Serial.println((char)keysOnSerial4[keyPressed]);
-    Keyboard.print((char)keysOnSerial4[keyPressed]);
+//    Keyboard.print((char)keysOnSerial4[keyPressed]);
   }
   while (HWSERIAL5.available() > 0) {
     int keyPressed = HWSERIAL5.parseInt();
@@ -55,9 +56,8 @@ void loop(){
     Serial.print(keyPressed);
     Serial.print(" - ");
     Serial.println((char)keysOnSerial5[keyPressed]);
-    Keyboard.print((char)keysOnSerial5[keyPressed]);
+//    Keyboard.print((char)keysOnSerial5[keyPressed]);
   }
-  
   delay(10);
 
 }
