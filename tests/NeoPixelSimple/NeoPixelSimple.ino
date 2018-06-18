@@ -8,7 +8,7 @@
 
 // Which pin on the Arduino is connected to the NeoPixels?
 // On a Trinket or Gemma we suggest changing this to 1
-#define PIN            33
+#define PIN            35
 
 // How many NeoPixels are attached to the Arduino?
 #define NUMPIXELS      400
@@ -37,7 +37,7 @@ void loop() {
   for(int i=0;i<NUMPIXELS;i++){
 
     // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
-    pixels.setPixelColor(i, pixels.Color(150,150,150)); // Moderately bright green color.
+    pixels.setPixelColor(i, pixels.Color(64,64,64)); // Moderately bright green color.
 
     pixels.show(); // This sends the updated pixel color to the hardware.
 

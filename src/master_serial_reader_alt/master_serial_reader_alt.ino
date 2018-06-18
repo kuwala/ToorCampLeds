@@ -1,7 +1,12 @@
-//Master teensy 3.6 reads three serial inputs
+/* * * * * * * * * *
+Master teensy 3.6 reads three serial inputs
+Hardware:
+Connect LEDstrip to pin 35
+* * * * * * * * * */
+
 #include "FastLED.h"
 // led Parts
-#define NUM_LEDS 300
+#define NUM_LEDS 344
 #define LED_PIN 35
 #define LED_BRIGHTNESS 64
 CRGB leds[NUM_LEDS];
@@ -21,11 +26,11 @@ void setup()
   FastLED.addLeds<NEOPIXEL, LED_PIN>(leds, NUM_LEDS);
 	// FastLED.addLeds<WS2812SERIAL ,LED_PIN,RGB>(leds,NUM_LEDS);
 	// LEDS.setBrightness(84);
-  leds[3] = CRGB(0,128,0);
-  FastLED.show();
-  delay(200);
-  leds[3] = CRGB(0,0,0);
-  FastLED.show();
+  // leds[3] = CRGB(0,128,0);
+  // FastLED.show();
+  // delay(200);
+  // leds[3] = CRGB(0,0,0);
+  // FastLED.show();
 
   Serial.begin(38400);
   HWSERIAL1.begin(38400);
@@ -34,7 +39,7 @@ void setup()
   Serial.println("starting teensy");
 }
 
-int numOfKeys = 21;
+const int numOfKeys = 21;
 byte keysOnSerial1[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
 byte keysOnSerial4[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
 byte keysOnSerial5[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
@@ -43,29 +48,22 @@ byte remapping[] = {'S','D','C','D','E','F','G','H','I','J','K','L','M','N','O',
 
 int keysToLedSegments[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
 
-// special segments
-// 14 - backspace  16 leds
-// 15 - backslash
 
-int numSegments = 58;
-int ledSegments[] = {0/*esc*/, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48,   52/*backspace*/,
-  68/*backslash*/,   78, 82, 86, 90, 94, 98, 102, 106, 110, 114, 118, 122,  126/*tab*/,
-  136/*capslock*/,  140, 144, 148, 152, 156, 160, 164, 168, 172, 176, 180,  184/*enter*/,
-  194/*right shift*/,  210, 214, 218, 222, 226, 230, 234, 238, 242, 246,   250/*left shift*/,
-   254/*right ctrl*/, 264/*alt*/, 268/*space*/,308/*alt*/,312/*ctrl*/,322/*used as length of ctrl*/};
+int numSegments = 60;
+int ledSegments[] = {0/*esc*/, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52,   56/*backspace*/,
+  72/*backslash*/,   82, 86, 90, 94, 98, 102, 106, 110, 114, 118, 122, 126,  130/*tab*/,
+  140/*capslock*/,  150, 154, 158, 162, 166, 170, 174, 178, 182, 186, 190,  194/*enter*/,
+  204/*right shift*/,  220, 224, 228, 232, 236, 240, 244, 248, 252, 256,   260/*left shift*/,
+   276/*right ctrl*/, 286/*alt*/, 290/*space*/, 330/*alt*/, 334/*ctrl*/, 344/*used as length of ctrl*/};
 
-void mapKeyToLeds(char key) {
-}
 
 void loop(){
   testInput();
   // // doInputs();
   updateLeds();
   FastLED.show();
-
-  // Serial.println("running");
-  // delay(50);
 }
+
 void testInput() {
   //Serial for testing input via laptop
   while (Serial.available() > 0) {
@@ -77,11 +75,11 @@ void testInput() {
     Serial.print(" - ");
     if (keyPressed < numOfKeys) {
       Serial.println((char)keysOnSerial1[keyPressed]);
-      lightUpSegment(keyPressed);
-//      Keyboard.print((char)keysOnSerial1[keyPressed]);
     } else {
       Serial.println("KeyPressed is out of Bounds");
     }
+      lightUpSegment(keyPressed);
+
     Serial.print(" - ");
     Serial.print("State (D)own or (U)p : ");
     Serial.println(state);
@@ -98,46 +96,78 @@ void doInputs() {
     Serial.print(" - ");
     if (keyPressed < numOfKeys) {
       Serial.println((char)keysOnSerial1[keyPressed]);
-      lightUpSegment(keyPressed);
-//      Keyboard.print((char)keysOnSerial1[keyPressed]);
+      // Keyboard.print((char)keysOnSerial1[keyPressed]);
     } else {
       Serial.println("KeyPressed is out of Bounds");
     }
+
+    lightUpSegment(keyPressed);
+
     Serial.print(" - ");
-    Serial.print("State (D)own or (U)p : ");
+    Serial.print("State : ");
     Serial.println(state);
 
   }
   while (HWSERIAL4.available() > 0) {
     int keyPressed = HWSERIAL4.parseInt();
+    char state = HWSERIAL4.read();
+
     Serial.print("got a number: ");
     Serial.print(keyPressed);
     Serial.print(" - ");
-    Serial.println((char)keysOnSerial4[keyPressed]);
+    if (keyPressed < numOfKeys) {
+      Serial.println((char)keysOnSerial4[keyPressed]);
+      // Keyboard.print((char)keysOnSerial1[keyPressed]);
+    } else {
+      Serial.println("KeyPressed is out of Bounds");
+    }
+
+    lightUpSegment(keyPressed + numOfKeys);
+
+    Serial.print(" - ");
+    Serial.print("State : ");
+    Serial.println(state);
+
 //    Keyboard.print((char)keysOnSerial4[keyPressed]);
   }
   while (HWSERIAL5.available() > 0) {
     int keyPressed = HWSERIAL5.parseInt();
+    char state = HWSERIAL5.read();
+
     Serial.print("got a number: ");
     Serial.print(keyPressed);
     Serial.print(" - ");
-    Serial.println((char)keysOnSerial5[keyPressed]);
-//    Keyboard.print((char)keysOnSerial5[keyPressed]);
+    if (keyPressed < numOfKeys) {
+      Serial.println((char)keysOnSerial5[keyPressed]);
+      // Keyboard.print((char)keysOnSerial5[keyPressed]);
+    } else {
+      Serial.println("KeyPressed is out of Bounds");
+    }
+
+    lightUpSegment(keyPressed + numOfKeys + numOfKeys);
+
+    Serial.print(" - ");
+    Serial.print("State : ");
+    Serial.println(state);
   }
 }
 
 void updateLeds() {
   // dim
   for (unsigned int i = 0; i < NUM_LEDS; i++) {
-    leds[i].fadeToBlackBy(4);
+    leds[i].fadeToBlackBy(10);
   }
   // redraw
 }
 
 void lightUpSegment(int segment) {
-    int endIndex = ledSegments[segment + 1];
-    for (int i= ledSegments[segment]; i< endIndex; i++) {
-      leds[i] = pressedColor;
+    if(segment < numSegments-1) {
+      int endIndex = ledSegments[segment + 1];
+      for (int i= ledSegments[segment]; i< endIndex; i++) {
+        leds[i] = pressedColor;
+      }
+    } else {
+      Serial.println("lightUpSegment out of bounds");
     }
 }
 
