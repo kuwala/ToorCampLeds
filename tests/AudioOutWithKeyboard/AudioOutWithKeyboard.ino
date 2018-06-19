@@ -53,12 +53,15 @@ AudioControlSGTL5000     sgtl5000_1;     //xy=478,826
 
 // Daniels Add ons
 int toggleMoreAudio = 0;
-#define NUM_AUDIO_FILES 6
+#define NUM_AUDIO_FILES 7
 
 int filenumber = 0;  // while file to play
 const char * filelist[NUM_AUDIO_FILES] = {
-  "DAN1.WAV", "DAN2.WAV", "DAN3.WAV", "DAN4.WAV", "DAN5.WAV", "DAN6.WAV"
+  "1.wav", "2.wav", "3.wav", "4.wav", "5.wav", "6.wav", "7.wav"
 };
+// const char * filelist[NUM_AUDIO_FILES] = {
+//   "DAN1.WAV", "DAN2.WAV", "DAN3.WAV", "DAN4.WAV", "DAN5.WAV", "DAN6.WAV"
+// };
 
 void setupAudio() {
   AudioMemory(8);

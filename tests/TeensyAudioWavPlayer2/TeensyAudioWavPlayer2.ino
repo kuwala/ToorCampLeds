@@ -1,11 +1,4 @@
-// Play 3 wave files simultaneously 
-
-#include <Audio.h>
-#include <Wire.h>
-#include <SPI.h>
-#include <SD.h>
-#include <SerialFlash.h>
-#include <Bounce.h>
+// Play 3 wave files simultaneously
 
 #include <Audio.h>
 #include <Wire.h>
@@ -73,7 +66,7 @@ const char * filelist[NUM_AUDIO_FILES] = {
 elapsedMillis blinkTime;
 
 void loop() {
-  
+
   if (playSdWav1.isPlaying() == false) {
     const char *filename = filelist[filenumber];
     filenumber = filenumber + 1;
@@ -81,11 +74,11 @@ void loop() {
     Serial.print("Start playing ");
     Serial.println(filename);
     playSdWav1.play(filename);
-  
-    
+
+
     delay(8); // wait for library to parse WAV info
   }
-  
+
   // blink the LED without delays
   if (blinkTime < 250) {
     digitalWrite(13, LOW);
@@ -94,7 +87,7 @@ void loop() {
   } else {
     blinkTime = 0; // start blink cycle over again
   }
-  
+
   // read pushbuttons
   button0.update();
   if (button0.fallingEdge()) {
@@ -116,7 +109,7 @@ void loop() {
     filenumber = filenumber - 2;
     if (filenumber < 0) filenumber = filenumber + 4;
   }
-  
+
   // read the knob position (analog input A2)
   //int knob = analogRead(A2);
  // float vol = (float)knob / 1280.0;
@@ -124,7 +117,3 @@ void loop() {
   //Serial.print("volume = ");
   //Serial.println(vol);
 }
-
-
-
-

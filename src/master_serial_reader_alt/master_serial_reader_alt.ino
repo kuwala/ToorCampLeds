@@ -39,14 +39,15 @@ void setup()
   Serial.println("starting teensy");
 }
 
-const int numOfKeys = 21;
-byte keysOnSerial1[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
+const int numOfKeys = 21; // per section
+byte keysOnSerial1[] = {'A','B','C','2','E',(byte)27/*ESC*/,'G','H','I','J','4','5','M','N','O','P','Q','R','S','T','U'};
 byte keysOnSerial4[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
 byte keysOnSerial5[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
 
-byte remapping[] = {'S','D','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
-
-int keysToLedSegments[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21};
+// maps buttons pressed onto ledSegments
+int ledSegmentsOnSerial1[] = {0, 1, 2, 3, 4, 0, 6, 7, 8, 9, 5, 6, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+int ledSegmentsOnSerial4[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+int ledSegmentsOnSerial5[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
 
 int numSegments = 60;
@@ -59,7 +60,7 @@ int ledSegments[] = {0/*esc*/, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52,
 
 void loop(){
   testInput();
-  // // doInputs();
+  doInputs();
   updateLeds();
   FastLED.show();
 }
@@ -91,17 +92,20 @@ void doInputs() {
     int keyPressed = HWSERIAL1.parseInt();
     char state = HWSERIAL1.read();
 
-    Serial.print("got a number: ");
+    Serial.print("keyPressed Serial1: ");
     Serial.print(keyPressed);
     Serial.print(" - ");
     if (keyPressed < numOfKeys) {
-      Serial.println((char)keysOnSerial1[keyPressed]);
+
+      Serial.print((char)keysOnSerial1[keyPressed]);
       // Keyboard.print((char)keysOnSerial1[keyPressed]);
+      int segment = ledSegmentsOnSerial1[keyPressed];
+      lightUpSegment(segment);
+
     } else {
-      Serial.println("KeyPressed is out of Bounds");
+      Serial.print("KeyPressed is out of Bounds");
     }
 
-    lightUpSegment(keyPressed);
 
     Serial.print(" - ");
     Serial.print("State : ");
@@ -110,41 +114,44 @@ void doInputs() {
   }
   while (HWSERIAL4.available() > 0) {
     int keyPressed = HWSERIAL4.parseInt();
+    int keyIndex = keyPressed;
     char state = HWSERIAL4.read();
 
-    Serial.print("got a number: ");
+    keyPressed = keyPressed + numOfKeys;
+
+    Serial.print("keyPressed Serial4: ");
     Serial.print(keyPressed);
     Serial.print(" - ");
-    if (keyPressed < numOfKeys) {
-      Serial.println((char)keysOnSerial4[keyPressed]);
-      // Keyboard.print((char)keysOnSerial1[keyPressed]);
+    if (keyIndex < numOfKeys) {
+      Serial.print((char)keysOnSerial4[keyIndex]);
+      // Keyboard.print((char)keysOnSerial4[keyIndex]);
+      int segment = ledSegmentsOnSerial4[keyPressed];
     } else {
-      Serial.println("KeyPressed is out of Bounds");
+      Serial.print("KeyIndex is out of Bounds");
     }
 
-    lightUpSegment(keyPressed + numOfKeys);
+    lightUpSegment(keyPressed);
 
     Serial.print(" - ");
     Serial.print("State : ");
     Serial.println(state);
-
-//    Keyboard.print((char)keysOnSerial4[keyPressed]);
   }
   while (HWSERIAL5.available() > 0) {
     int keyPressed = HWSERIAL5.parseInt();
     char state = HWSERIAL5.read();
 
-    Serial.print("got a number: ");
+
+    Serial.print("keyPressed Serial5: ");
     Serial.print(keyPressed);
     Serial.print(" - ");
     if (keyPressed < numOfKeys) {
-      Serial.println((char)keysOnSerial5[keyPressed]);
-      // Keyboard.print((char)keysOnSerial5[keyPressed]);
+      Serial.print((char)keysOnSerial5[keyPressed]);
+      // Keyboard.print((char)keysOnSerial5[keyIndex]);
+      int segment = ledSegmentsOnSerial5[keyPressed];
     } else {
-      Serial.println("KeyPressed is out of Bounds");
+      Serial.print("KeyIndex is out of Bounds");
     }
 
-    lightUpSegment(keyPressed + numOfKeys + numOfKeys);
 
     Serial.print(" - ");
     Serial.print("State : ");
