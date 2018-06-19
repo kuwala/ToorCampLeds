@@ -40,15 +40,31 @@ void setup()
 }
 
 const int numOfKeys = 21; // per section
-byte keysOnSerial1[] = {'A','B','C','2','E',(byte)27/*ESC*/,'G','H','I','J','4','5','M','N','O','P','Q','R','S','T','U'};
-byte keysOnSerial4[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
-byte keysOnSerial5[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
-
+// byte keysOnSerial1[] = {'A','B','C','2','1',(byte)27/*ESC*/,'G','~','I','J','4','5','M','N','O','P','Q','R','S','T','U'};
+// byte keysOnSerial4[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
+// byte keysOnSerial5[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U'};
 // maps buttons pressed onto ledSegments
-int ledSegmentsOnSerial1[] = {0, 1, 2, 3, 4, 0, 6, 7, 8, 9, 5, 6, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-int ledSegmentsOnSerial4[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-int ledSegmentsOnSerial5[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 
+// int ledSegmentsOnSerial1[] = {0, 1, 2, 3, 2, 0, 6, 1, 8, 8, 5, 6, 26, 25, 14, 15, 16, 17, 18, 19, 4};
+// byte keysOnSerial1[] = {0, 1, 2, '2', '1', (byte)27/*ESC*/, 6, '~', 8, '7', '4', '5', 'w', 'e', 14, 15, 16, 17, 18, 19, '3'};
+//
+// int ledSegmentsOnSerial4[] = {19, 1, 2, 20, 22, 5, 11, 21, 8, 9, 10, 7, 12, 23, 24, 15, 16, 10, 18, 19, 9};
+// int keysOnSerial4[]        = {'o', 1, 2, 'i', 'y', 5, '0', 'u', 8, 9, 10, '6', 12, 't', 'r', 15, 16, '9', 18, 19, '8'};
+//
+// int ledSegmentsOnSerial5[] = {0, 1, 2, 12, 17, 5, 6, 7, 8, 9, 10, 11, 16, 13, 14, 15, 15, 17, 14, 18, 13};
+// int keysOnSerial5[]        = {0, 1, 2, '-', '[', 5, 6, 7, 8, 9, 10, 11, ']', 13, 14, 15, '\\', 17, (byte)8/*backspace*/, 'p', '='};
+
+byte keysOnSerial1[] = {'L'/*lctrl*/, 'C'/*caps*/, 'T'/*tab*/, '2', '1', (byte)27/*esc*/, 'q', '~', 'z', '7', '4', '5', 'w', 'e', 's', 'd', 'x', 'A'/*lalt*/, 'a', 'S'/*leftshit*/, '3'};
+int ledSegmentsOnSerial1[] = { 54, 29, 28, 3, 2, 0, 27, 1, 52, 8, 5, 6, 26, 25, 31, 32, 51, 55, 30, 53, 4 };
+
+byte keysOnSerial4[] = {'o', 'b', 'h', 'i', 'y', 'k', '0', 'u', 'm', 'j', 'v', '6', 'c', 't', 'r', 'f', 'g', '9', 'n', ' ', '8'};
+int ledSegmentsOnSerial4 [] = { 19, 48, 35, 20, 22, 37, 11, 21, 46, 36, 49, 7, 50, 23, 24, 33, 34, 10, 47, 56, 9 };
+
+// byte keysOnSerial5[] = { '?', '/', '?',  '-', '[', '\'', '.', '?', 'l', 'A'/*ralt*/, ',', ']', 'S'/*rshift*/, (byte)13/*enter*/, 'C'/*rctrl*/, '\\', ';', (byte)8/*backspace*/, 'p', '=' };
+// int ledSegmentsOnSerial5 [] = { 0, 45, 2, 12, 17, 42, 46, 38, 60, 47, 16, 44, 43, 61, 15, 39, 14, 18, 13 };
+
+byte keysOnSerial5[]        = {0, '/', 2, '-', '[', '\'', '.', 'l', 'A'/*ralt*/, ',', '?', '?', ']', 'S'/*rshift*/, 'E'/*enter*/, 'C'/*rctrl*/, '\\', ';', (byte)8/*backspace*/, 'p', '='};
+int ledSegmentsOnSerial5[] = {0, 43, 2, 12, 17, 40, 44, 38, 57, 45, 10, 11, 16, 42, 41, 58, 15, 39, 14, 18, 13};
 
 int numSegments = 60;
 int ledSegments[] = {0/*esc*/, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52,   56/*backspace*/,

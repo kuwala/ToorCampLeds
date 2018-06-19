@@ -1,0 +1,149 @@
+
+Serial1:
+'lctrl', 'caps', 'tab', '2', '1', 'esc', 'q', '~', 'z', '7', '4', '5', 'w', 'e', 's', 'd', 'x', 'lalt', 'a', 'lshift', '3'
+56, 29, 28, 03, 02, 00, 27, 01, 54, 08, 05, 06, 26, 25, 31, 32, 53, 57, 30, 55, 04
+
+Serial4:
+'o', 'b', 'h', 'i', 'y', 'k', '0', 'u', 'm', 'j', 'v', '6', 'c', 't', 'r', 'f', 'g', '9', 'n', ' ', '8'
+19, 50, 35, 20, 22, 37, 11, 21, 48, 36, 51, 07, 52, 23, 24, 33, 34, 10, 49, 58, 09
+
+Serial5:
+'/', '-', '[', ''', '.', '', 'l', 'ralt', ',', ']', 'rshift', 'ent', 'rctrl', 'backslash', ';', 'backspace', 'p', '='
+45, 12, 17, 42, 46, 38, 60, 47, 16, 44, 43, 61, 15, 39, 14, 18, 13
+
+
+
+                oldIndex      newIndex -  character
+keyPressed Serial1: 5 -  - State : D 0 - esc
+keyPressed Serial1: 5 -  - State : U
+keyPressed Serial1: 7 - H - State : D 1 - ~
+keyPressed Serial1: 7 - H - State : U
+keyPressed Serial1: 4 - E - State : D 2 - 1
+keyPressed Serial1: 4 - E - State : U
+keyPressed Serial1: 3 - 2 - State : D 3 - 2
+keyPressed Serial1: 3 - 2 - State : U
+keyPressed Serial1: 20 - U - State : D 4 - 3
+keyPressed Serial1: 20 - U - State : U
+
+keyPressed Serial1: 10 - 4 - State : D 5 - 4
+keyPressed Serial1: 10 - 4 - State : U
+keyPressed Serial1: 11 - 5 - State : D 6 - 5
+keyPressed Serial1: 11 - 5 - State : U
+
+keyPressed Serial4: 11 - L - State : D 7 - 6
+keyPressed Serial4: 11 - L - State : U
+keyPressed Serial1: 9 - J - State : D 8 - 8
+keyPressed Serial1: 9 - J - State : U
+
+keyPressed Serial4: 20 - U - State : D 9 - 8
+keyPressed Serial4: 20 - U - State : U
+keyPressed Serial4: 17 - R - State : D 10 - 9
+keyPressed Serial4: 17 - R - State : U
+
+keyPressed Serial4: 6 - G - State : D 11 - 0
+keyPressed Serial4: 6 - G - State : U
+
+keyPressed Serial5: 3 - D - State : D 12 - -
+keyPressed Serial5: 3 - D - State : U
+
+keyPressed Serial5: 20 - U - State : D 13 - =
+keyPressed Serial5: 20 - U - State : U
+keyPressed Serial5: 18 - S - State : D 14 - backspace
+keyPressed Serial5: 18 - S - State : U
+
+keyPressed Serial5: 16 - Q - State : D 15 - backslash
+keyPressed Serial5: 16 - Q - State : U
+keyPressed Serial5: 12 - M - State : D 16 - ]
+keyPressed Serial5: 12 - M - State : U
+keyPressed Serial5: 4 - E - State : D  17 - [
+keyPressed Serial5: 4 - E - State : U
+keyPressed Serial5: 19 - T - State : D 18 - p
+keyPressed Serial5: 19 - T - State : U
+
+keyPressed Serial4: 0 - A - State : D  19 - o
+keyPressed Serial4: 0 - A - State : U
+keyPressed Serial4: 3 - D - State : D  20 - i
+keyPressed Serial4: 3 - D - State : U
+keyPressed Serial4: 7 - H - State : D  21 - u
+keyPressed Serial4: 7 - H - State : U
+keyPressed Serial4: 4 - E - State : D  22 - y
+keyPressed Serial4: 4 - E - State : U
+keyPressed Serial4: 13 - N - State : D 23 - t
+keyPressed Serial4: 13 - N - State : U
+keyPressed Serial4: 14 - O - State : D 24 - r
+keyPressed Serial4: 14 - O - State : U
+
+keyPressed Serial1: 13 - N - State : D 25 - e
+keyPressed Serial1: 13 - N - State : U
+keyPressed Serial1: 12 - M - State : D 26 - w
+keyPressed Serial1: 12 - M - State : U
+keyPressed Serial1: 6 - G - State : D 27 - q
+keyPressed Serial1: 6 - G - State : U
+keyPressed Serial1: 2 - C - State : D 28 - tab
+keyPressed Serial1: 2 - C - State : U
+keyPressed Serial1: 1 - B - State : D
+keyPressed Serial1: 1 - B - State : U
+keyPressed Serial1: 18 - S - State : D
+keyPressed Serial1: 18 - S - State : U
+keyPressed Serial1: 14 - O - State : D
+keyPressed Serial1: 14 - O - State : U
+keyPressed Serial1: 15 - P - State : D
+keyPressed Serial1: 15 - P - State : U
+keyPressed Serial4: 15 - P - State : D
+keyPressed Serial4: 15 - P - State : U
+keyPressed Serial4: 16 - Q - State : D
+keyPressed Serial4: 16 - Q - State : U
+keyPressed Serial4: 2 - C - State : D
+keyPressed Serial4: 2 - C - State : U
+keyPressed Serial4: 9 - J - State : D
+keyPressed Serial4: 9 - J - State : U
+keyPressed Serial4: 5 - F - State : D
+keyPressed Serial4: 5 - F - State : U
+keyPressed Serial5: 7 - H - State : D
+keyPressed Serial5: 7 - H - State : U
+keyPressed Serial5: 17 - R - State : D
+keyPressed Serial5: 17 - R - State : U
+keyPressed Serial5: 17 - R - State : D
+keyPressed Serial5: 17 - R - State : U
+keyPressed Serial5: 17 - R - State : D
+keyPressed Serial5: 17 - R - State : U
+keyPressed Serial5: 5 - F - State : D
+keyPressed Serial5: 5 - F - State : U
+keyPressed Serial5: 14 - O - State : D
+keyPressed Serial5: 14 - O - State : U
+keyPressed Serial5: 13 - N - State : D
+keyPressed Serial5: 13 - N - State : U
+keyPressed Serial5: 1 - B - State : D
+keyPressed Serial5: 1 - B - State : U
+keyPressed Serial5: 6 - G - State : D
+keyPressed Serial5: 6 - G - State : U
+keyPressed Serial5: 9 - J - State : D
+keyPressed Serial5: 9 - J - State : U
+keyPressed Serial4: 8 - I - State : D
+keyPressed Serial4: 8 - I - State : U
+keyPressed Serial4: 18 - S - State : D
+keyPressed Serial4: 18 - S - State : U
+keyPressed Serial4: 1 - B - State : D
+keyPressed Serial4: 1 - B - State : U
+keyPressed Serial4: 10 - K - State : D
+keyPressed Serial4: 10 - K - State : U
+keyPressed Serial4: 12 - M - State : D
+keyPressed Serial4: 12 - M - State : U
+keyPressed Serial1: 16 - Q - State : D
+keyPressed Serial1: 16 - Q - State : U
+keyPressed Serial1: 8 - I - State : D
+keyPressed Serial1: 8 - I - State : U
+keyPressed Serial1: 19 - T - State : D
+keyPressed Serial1: 19 - T - State : U
+keyPressed Serial1: 0 - A - State : D
+keyPressed Serial1: 0 - A - State : U
+keyPressed Serial1: 17 - R - State : D
+keyPressed Serial1: 17 - R - State : U
+keyPressed Serial4: 19 - T - State : D
+keyPressed Serial4: 19 - T - State : U
+keyPressed Serial4: 19 - T - State : D
+keyPressed Serial4: 19 - T - State : U
+keyPressed Serial5: 8 - I - State : D
+keyPressed Serial5: 8 - I - State : U
+keyPressed Serial5: 15 - P - State : D
+keyPressed Serial5: 15 - P - State : U
