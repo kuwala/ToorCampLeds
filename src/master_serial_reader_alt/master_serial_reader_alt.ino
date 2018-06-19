@@ -59,10 +59,18 @@ int ledSegments[] = {0/*esc*/, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52,
 
 
 void loop(){
+  // testAllAudioTriggers();
   testInput();
   doInputs();
   updateLeds();
   FastLED.show();
+}
+void testAllAudioTriggers() {
+  for (size_t i = 0; i < 58; i++) {
+    sendAudioTrigger(i);
+    Serial.println("sending audio Trigger");
+    delay(1000);
+  }
 }
 
 void testInput() {
@@ -87,6 +95,15 @@ void testInput() {
 
   }
 }
+void sendAudioTrigger(int segment) {
+  if (segment < numSegments) {
+    Serial5.print(segment);
+    Serial5.print('D');
+  } else {
+    Serial.println("sendAudioTrigger out of bounds");
+  }
+
+}
 void doInputs() {
   while (HWSERIAL1.available() > 0) {
     int keyPressed = HWSERIAL1.parseInt();
@@ -101,6 +118,7 @@ void doInputs() {
       // Keyboard.print((char)keysOnSerial1[keyPressed]);
       int segment = ledSegmentsOnSerial1[keyPressed];
       lightUpSegment(segment);
+      sendAudioTrigger(segment);
 
     } else {
       Serial.print("KeyPressed is out of Bounds");
@@ -114,23 +132,22 @@ void doInputs() {
   }
   while (HWSERIAL4.available() > 0) {
     int keyPressed = HWSERIAL4.parseInt();
-    int keyIndex = keyPressed;
     char state = HWSERIAL4.read();
 
-    keyPressed = keyPressed + numOfKeys;
 
     Serial.print("keyPressed Serial4: ");
     Serial.print(keyPressed);
     Serial.print(" - ");
-    if (keyIndex < numOfKeys) {
-      Serial.print((char)keysOnSerial4[keyIndex]);
+    if (keyPressed < numOfKeys) {
+      Serial.print((char)keysOnSerial4[keyPressed]);
       // Keyboard.print((char)keysOnSerial4[keyIndex]);
       int segment = ledSegmentsOnSerial4[keyPressed];
+      lightUpSegment(segment);
+      sendAudioTrigger(segment);
     } else {
       Serial.print("KeyIndex is out of Bounds");
     }
 
-    lightUpSegment(keyPressed);
 
     Serial.print(" - ");
     Serial.print("State : ");
@@ -148,6 +165,8 @@ void doInputs() {
       Serial.print((char)keysOnSerial5[keyPressed]);
       // Keyboard.print((char)keysOnSerial5[keyIndex]);
       int segment = ledSegmentsOnSerial5[keyPressed];
+      lightUpSegment(segment);
+      sendAudioTrigger(segment);
     } else {
       Serial.print("KeyIndex is out of Bounds");
     }
