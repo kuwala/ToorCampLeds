@@ -63,7 +63,7 @@ int ledSegmentsOnSerial4 [] = { 19, 48, 35, 20, 22, 37, 11, 21, 46, 36, 49, 7, 5
 // byte keysOnSerial5[] = { '?', '/', '?',  '-', '[', '\'', '.', '?', 'l', 'A'/*ralt*/, ',', ']', 'S'/*rshift*/, (byte)13/*enter*/, 'C'/*rctrl*/, '\\', ';', (byte)8/*backspace*/, 'p', '=' };
 // int ledSegmentsOnSerial5 [] = { 0, 45, 2, 12, 17, 42, 46, 38, 60, 47, 16, 44, 43, 61, 15, 39, 14, 18, 13 };
 
-byte keysOnSerial5[]        = {0, '/', 2, '-', '[', '\'', '.', 'l', 'A'/*ralt*/, ',', '?', '?', ']', 'S'/*rshift*/, 'E'/*enter*/, 'C'/*rctrl*/, '\\', ';', (byte)8/*backspace*/, 'p', '='};
+byte keysOnSerial5[]        = {0, '/', 2, '-', '[', '\'', '.', 'l', 'A'/*ralt*/, ',', '?', '?', ']', 'S'/*rshift*/, 'E'/*Enter*/, 'C'/*rctrl*/, '\\', ';', (byte)8/*backspace*/, 'p', '='};
 int ledSegmentsOnSerial5[] = {0, 43, 2, 12, 17, 40, 44, 38, 57, 45, 10, 11, 16, 42, 41, 58, 15, 39, 14, 18, 13};
 
 int numSegments = 60;
@@ -120,6 +120,40 @@ void sendAudioTrigger(int segment) {
   }
 
 }
+void sendUSBKeyboardPress(char key) {
+  // check for special keys
+  Serial.println("usb keyboard triggered");
+  switch(key) {
+    case 'A': // alt
+    // Keyboard.set_modifier(MODIFIERKEY_SHIFT);
+    // Keyboard.send_now();
+    // need to releas
+    break;
+
+    case 'L': // ctrl
+    // Keyboard.set_modifier(MODIFIERKEY_CTRL | MODIFIERKEY_ALT);
+
+    break;
+
+    case 'C': // caps
+
+    break;
+
+    case 'S': // shift
+
+    break;
+    case 'E':
+      Keyboard.press(KEY_ENTER);
+      Keyboard.release(KEY_ENTER);
+    break;
+
+    default: // all other stuff and keys
+      Keyboard.print(key);
+    break;
+
+  }
+
+}
 void doInputs() {
   while (HWSERIAL1.available() > 0) {
     int keyPressed = HWSERIAL1.parseInt();
@@ -129,12 +163,19 @@ void doInputs() {
     Serial.print(keyPressed);
     Serial.print(" - ");
     if (keyPressed < numOfKeys) {
+      // only send keypresses on the button down
+      if(state == 'D') {
 
-      Serial.print((char)keysOnSerial1[keyPressed]);
-      // Keyboard.print((char)keysOnSerial1[keyPressed]);
-      int segment = ledSegmentsOnSerial1[keyPressed];
-      lightUpSegment(segment);
-      sendAudioTrigger(segment);
+        Serial.print((char)keysOnSerial1[keyPressed]);
+
+        char key = (char)keysOnSerial1[keyPressed];
+        sendUSBKeyboardPress(key);
+
+        int segment = ledSegmentsOnSerial1[keyPressed];
+        lightUpSegment(segment);
+        sendAudioTrigger(segment);
+      }
+
 
     } else {
       Serial.print("KeyPressed is out of Bounds");
@@ -155,11 +196,17 @@ void doInputs() {
     Serial.print(keyPressed);
     Serial.print(" - ");
     if (keyPressed < numOfKeys) {
-      Serial.print((char)keysOnSerial4[keyPressed]);
-      // Keyboard.print((char)keysOnSerial4[keyIndex]);
-      int segment = ledSegmentsOnSerial4[keyPressed];
-      lightUpSegment(segment);
-      sendAudioTrigger(segment);
+      if(state == 'D') {
+
+        Serial.print((char)keysOnSerial4[keyPressed]);
+
+        char key = (char)keysOnSerial4[keyPressed];
+        sendUSBKeyboardPress(key);
+
+        int segment = ledSegmentsOnSerial4[keyPressed];
+        lightUpSegment(segment);
+        sendAudioTrigger(segment);
+      }
     } else {
       Serial.print("KeyIndex is out of Bounds");
     }
@@ -178,11 +225,17 @@ void doInputs() {
     Serial.print(keyPressed);
     Serial.print(" - ");
     if (keyPressed < numOfKeys) {
-      Serial.print((char)keysOnSerial5[keyPressed]);
-      // Keyboard.print((char)keysOnSerial5[keyIndex]);
-      int segment = ledSegmentsOnSerial5[keyPressed];
-      lightUpSegment(segment);
-      sendAudioTrigger(segment);
+      if(state == 'D') {
+
+        Serial.print((char)keysOnSerial5[keyPressed]);
+
+        char key = (char)keysOnSerial5[keyPressed];
+        sendUSBKeyboardPress(key);
+
+        int segment = ledSegmentsOnSerial5[keyPressed];
+        lightUpSegment(segment);
+        sendAudioTrigger(segment);
+      }
     } else {
       Serial.print("KeyIndex is out of Bounds");
     }
